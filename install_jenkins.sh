@@ -16,7 +16,7 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 
  apt-get install jenkins -y
 
- cat ./var/lib/jenkins/secrets/initialAdminPassword 
+ cat /var/lib/jenkins/secrets/initialAdminPassword 
 
  #affiche l'adresse IP
 	echo""
