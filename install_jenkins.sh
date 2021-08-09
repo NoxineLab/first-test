@@ -10,11 +10,13 @@
 #installation des Paquets debian jenkins
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 
- sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
  apt update
 
  apt-get install jenkins -y
+ 
+ sudo systemctl enable --now jenkins
 
  cat /var/lib/jenkins/secrets/initialAdminPassword 
 
