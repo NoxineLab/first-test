@@ -17,6 +17,12 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
  apt-get install jenkins -y
  
  sudo systemctl enable --now jenkins
+ 
+ date
+echo "étape 1 initialisation de Jenkins :" ;
+sleep 60
+date
+echo "étape 2 initialisation terminée : " ;
 
  cat /var/lib/jenkins/secrets/initialAdminPassword 
 
