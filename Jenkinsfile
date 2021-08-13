@@ -1,26 +1,10 @@
-node {
-  try {
-    stage('checkout') {
-      checkout scm
+pipeline {
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
     }
-    stage('prepare') {
-      sh "git clean -fdx"
-    }
-    stage('compile') {
-      echo "nothing to compile for hello.sh..."
-    }
-    stage('test') {
-      sh "./test_hello.sh"
-    }
-    stage('package') {
-      sh "tar -cvzf hello.tar.gz hello.sh"
-    }
-    stage('publish') {
-      echo "uploading package..."
-    }
-  } finally {
-    stage('cleanup') {
-      echo "doing some cleanup..."
-    }
-  }
 }
