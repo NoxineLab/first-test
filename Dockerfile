@@ -1,5 +1,6 @@
-FROM nginx:latst
-Run sed -i 's/ngix/g' /user/shre/nginx/html/index.html
+FROM nginx
+COPY static-html-directory /usr/share/nginx/html
+docker run --name some-nginx -d some-content-nginx
 EXPOSE 80
 
 DOCKERFILE (END)
