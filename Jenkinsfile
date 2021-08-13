@@ -10,7 +10,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'ngins --version'
+                sh 'nginx --version'
             }
         }
     }
