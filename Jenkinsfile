@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
+                docker any {
                     image 'nginx'
-                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
+                    // Exécutez le conteneur sur le nœud spécifié au niveau supérieur du Pipeline, dans le même espace de travail, plutôt que sur un nouveau nœud entièrement :
                     reuseNode true
                 }
             }
