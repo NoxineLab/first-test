@@ -1,42 +1,17 @@
 pipeline {
-         agent any
-         stages {
-                 stage('Build') {
-                 steps {
-                     echo 'Hi, Jerome. Starting to build the App.'
-                 }
-                 }
-                 stage('Test') {
-                 steps {
-                    input('Do you want to proceed?')
-                 }
-                 }
-                 stage('Deploy') {
-                 parallel { 
-                            stage('Deploy start ') {
-                           steps {
-                                echo "Start the deploy .."
-                           } 
-                           }
-                            stage('Deploying now') {
-                            agent {
-                                    docker {
-                                            reuseNode true
-                                            image ‘nginx’
-                                           }
-                                    }
-                            
-                              steps {
-                                echo "Docker Created"
-                              }
-                           }
-                           }
-                           }
-                 stage('Prod') {
-                     steps {
-                                echo "App is Prod Ready"
-                              }
-                 
-              }
-}
+    agent any
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'nginx'
+                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'ngins --version'
+            }
+        }
+    }
 }
