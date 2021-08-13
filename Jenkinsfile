@@ -1,16 +1,9 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.5.1' } }
     stages {
-        stage('Build') {
-            agent {
-                any {
-                    image 'nginx'
-                    // Exécutez le conteneur sur le nœud spécifié au niveau supérieur du Pipeline, dans le même espace de travail, plutôt que sur un nouveau nœud entièrement :
-                    reuseNode true
-                }
-            }
+        stage('build') {
             steps {
-                input 'nginx -v'
+                sh 'python --version'
             }
         }
     }
