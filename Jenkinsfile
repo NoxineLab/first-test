@@ -1,18 +1,42 @@
-node{
-  def app
-
-    stage('Clone') {
-        checkout scm
-    }
-
-    stage('Build image') {
-        app = docker.build("nginx")
-    }
-
-    stage('Test image') {
-        docker.image('nginx').withRun('-p 80:80') { c ->
-        sh 'docker ps'
-        sh 'curl localhost'
-	     }
-    }
+pipeline {
+         agent any
+         stages {
+                 stage('Build') {
+                 steps {
+                     echo 'Hi, Jerome. Starting to build the App.'
+                 }
+                 }
+                 stage('Test') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Deploy') {
+                 parallel { 
+                            stage('Deploy start ') {
+                           steps {
+                                echo "Start the deploy .."
+                           } 
+                           }
+                            stage('Deploying now') {
+                            agent {
+                                    docker {
+                                            reuseNode true
+                                            image ‘nginx’
+                                           }
+                                    }
+                            
+                              steps {
+                                echo "Docker Created"
+                              }
+                           }
+                           }
+                           }
+                 stage('Prod') {
+                     steps {
+                                echo "App is Prod Ready"
+                              }
+                 
+              }
+}
 }
