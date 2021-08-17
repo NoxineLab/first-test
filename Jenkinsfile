@@ -6,18 +6,10 @@ node(){
     print buildNum
     print branchName
 
-    stage('Env - clone generator'){
-      git "http://gitlab.example.com/mypipeline/generator.git"
-    }
-
-    stage('Env - run postgres'){
-      sh "./generator.sh -p"
+    
+    stage('Env - run docker'){
+      sh "docker run Dockerfile"
       sh "docker ps -a"
       
     }
-
-  } finally {
-    sh 'docker rm -f postgres'
-    cleanWs()
   }
-}
