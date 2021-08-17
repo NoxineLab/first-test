@@ -4,7 +4,6 @@ pipeline {
             image 'node:14-alpine' 
             label 'docker-node'
         }
-    }
     stages {
         stage('Test') {
             steps {
@@ -12,5 +11,6 @@ pipeline {
             }
         }
     }
+}
 }
 
