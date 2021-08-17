@@ -1,15 +1,12 @@
-node(){
-  try{
-    def buildNum = env.BUILD_NUMBER 
-    def branchName= env.BRANCH_NAME
-    
-    print buildNum
-    print branchName
-
-    
-    stage('Env - run docker'){
-      sh "docker run Dockerfile"
-      sh "docker ps -a"
-      
+pipeline {
+    agent {
+        docker { image 'node:14-alpine' }
     }
-  }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
