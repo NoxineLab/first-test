@@ -12,6 +12,14 @@ pipeline {
             steps {
                 sh 'gradle --version'
             }
+             stages {
+    stage('Stage 1') {
+      ...
+    }
+    stage('Stage 2') {
+      ...
+    }
+    }
         }
     }
 }
