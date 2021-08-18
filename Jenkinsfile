@@ -1,6 +1,6 @@
 node {  
     stage('Build') { 
-        sh 'echo ($git rev-parse head)' 
+        sh 'echo $(git rev-parse HEAD)' 
     }
     stage('Test') { 
         sh 'echo "ok2"'
