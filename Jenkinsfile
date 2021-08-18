@@ -1,5 +1,3 @@
-node {
-    withCheckout(scm) {
-         echo "GIT_COMMIT is ${env.GIT_COMMIT}"
-    }
+steps {
+  sh 'echo $GIT_COMIT'
 }
